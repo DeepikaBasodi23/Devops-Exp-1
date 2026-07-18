@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Registered Users</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f2f2;
+}
+
+.container{
+width:700px;
+margin:50px auto;
+background:white;
+padding:30px;
+border-radius:10px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:10px;
+text-align:center;
+}
+
+th{
+background:#007bff;
+color:white;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+<h2 align="center">
+Registered Participants
+</h2>
+
+
+<table>
+
+<thead>
+
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Event</th>
+</tr>
+
+</thead>
+
+
+<tbody id="users">
+
+</tbody>
+
+
+</table>
+
+</div>
+
+
+<script>
+
+fetch("http://localhost:3000/registrations")
+
+.then(response=>response.json())
+
+.then(data=>{
+
+let table="";
+
+data.forEach(user=>{
+
+table += `
+<tr>
+<td>${user.name}</td>
+<td>${user.email}</td>
+<td>${user.event}</td>
+</tr>
+`;
+
+});
+
+
+document.getElementById("users").innerHTML=table;
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>
